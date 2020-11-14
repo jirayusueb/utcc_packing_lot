@@ -16,6 +16,9 @@ migrate:
 mgs:
 	docker-compose exec django python manage.py makemigrations
 
+superuser:
+	docker-compose exec django python manage.py createsuperuser
+
 migrations-migrate: mgs migrate
 
 attach-django:
