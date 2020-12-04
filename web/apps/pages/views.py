@@ -16,9 +16,5 @@ class DetectPageView(TemplateView):
     template_name = 'detect.html'
 
 
-class CheckinPageView(TemplateView):
-    template_name = 'checkin.html'
-
-
-class CheckoutPageView(TemplateView):
-    template_name = 'checkout.html'
+class TestPageView(TemplateView):
+    template_name = 'testpage.html'

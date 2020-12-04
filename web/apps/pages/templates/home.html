@@ -28,8 +28,8 @@
                     <td>{{ park.motorcycle.brand | upper }} {{ park.motorcycle.model | upper }}</td>
                     <td>{{ park.motorcycle.plate }}</td>
                     <td>{{ park.get_status_display }}</td>
-                    <td>{{ park.created_at }}</td>
-                    <td>{{ park.updated_at }}</td>
+                    <td>{{ park.checkin.updated_at }}</td>
+                    <td>{{ park.checkout.updated_at }}</td>
                     </tr>
                 {% endfor %}
             </tbody>
