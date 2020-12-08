@@ -77,13 +77,13 @@ class ParkExportSerializer:
         sequence = 0
         for index, park in enumerate(self.queryset):
             sequence = index + 1
-            create_at = park.created_at.strftime('%d/%m/ %X')
-            update_at = park.updated_at.strftime('%d/%m/ %X')
+            create_at = park.checkin.created_at.strftime('%d/%m/ %X')
+            update_at = park.checkout.updated_at.strftime('%d/%m/ %X')
             check_in_date = f'{create_at[:6]}{park.created_at.year + 543}{create_at[6:]} น.'
             check_out_date = f'{update_at[:6]}{park.updated_at.year + 543}{update_at[6:]} น.'
 
-            park_created_at = park.created_at.replace(second=0, microsecond=0)
-            park_updated_at = park.updated_at.replace(second=0, microsecond=0)
+            park_created_at = park.checkin.created_at.replace(second=0, microsecond=0)
+            park_updated_at = park.checkout.updated_at.replace(second=0, microsecond=0)
             find_time = park_updated_at - park_created_at if park.status == InOutStatus.CHECKOUT else ''
             if find_time != '':
                 if find_time.seconds < 3600:

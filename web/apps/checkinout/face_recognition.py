@@ -45,7 +45,7 @@ def find_matches_image_between_user(basename, image, plate):
         if matches[best_match_index]:
             user_id = know_face_id[best_match_index]
 
-            user_profile = user_profiles.get(user_id=user_id)
+            user_profile = user_profiles.get(id=user_id)
             motorcycle = Motorcycle.objects.get(plate=plate)
 
             if basename == 'checkin' and user_profile.id == motorcycle.profile_id:
@@ -87,10 +87,9 @@ def find_matches_image_between_user(basename, image, plate):
                 log.info(f'{user_profile}, {create_check_in_out}')
                 return user_profile, create_check_in_out
 
-            else:
-                log.info(
-                    'Face ' + user_profile.family_name + " " + user_profile.last_name + ' not matching as motorcycle')
-                return 'Face not matching as motorcycle', None
+            elif basename == 'checkout' or basename == 'checkout' and user_profile.id != motorcycle.profile_id:
+                log.info('Not match')
+                return 'Not match', None
 
         else:
             log.info('Unknown')
