@@ -117,12 +117,3 @@ function PostCheckout() {
             console.log(data)
         })
 }
-
-let plateButton = document.querySelector("#plate");
-plateButton.addEventListener("click", PostPlate);
-
-let checkInButton = document.querySelector("#checkin");
-checkInButton.addEventListener("click", PostCheckin);
-
-let checkOutButton = document.querySelector("#checkout");
-checkOutButton.addEventListener("click", PostCheckout);

@@ -25,59 +25,63 @@
     </head>
 
     <body>
-{#    {% csrf_token %}#}
     <div class="container">
-        <div>
-            <img class="m-3 w-25" src="{% static "images/image0.jpg" %}" id="image">
-            <img class="m-3 w-25" src="{% static "images/lpn_1.jpg" %}" id="image_plate">
-        </div>
-        <div>
-            <p id="response"></p>
-        </div>
-        <div>
-            <button id="plate" class="btn btn-primary m-3">Plate</button>
-            <button id="checkin" class="btn btn-primary m-3">Checkin</button>
-            <button id="checkout" class="btn btn-primary m-3">Checkout</button>
-        </div>
-    </div>
-
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        <div class="container mt-5 mb-5" style="width: 20%;">
-            <div class=" card">
-                <div class="card-body">
-                    <h2 class="card-title">ออกรายงาน</h2>
-                    <form>
-                        <div class="form-group">
-                            <label for="">จาก</label>
-                            <input type="text"
-                                   id="id_pickerStart"
-                                   class="form-control start-date-picker"
-                                   name="start_date"
-                                   required>
-                        </div>
-                        <div class="form-group">
-                            <label for="">ถึง</label>
-                            <input type="text"
-                                   id="id_pickerEnd"
-                                   class="form-control end-date-picker"
-                                   name="end_date"
-                                   required>
-                        </div>
-                        <button id="submitReport"
-                                type="submit"
-                                class="btn btn-primary">ส่งออก
-                        </button>
-                        {#                    <span id="spanDate"></span>#}
-                    </form>
+        <div class="card m-3">
+            <div class="card-body">
+                <div class="card-title"><h2>กล้อง</h2></div>
+                <div class="select">
+                    <label for="videoSource">Video source: </label><select id="videoSource"></select>
+                </div>
+                <video id="video_webcam" width="320" height="240" autoplay muted></video>
+                <div>
+                    <p id="response"></p>
+                </div>
+                <div class="">
+                    <button id="button-face" class="btn btn-primary">ระบุหน้า</button>
+                    <button id="button-plate" class="btn btn-primary">ระบุป้ายทะเบียน</button>
+                    <button id="button-checkin" class="btn btn-primary">เข้าสู่ระบบ</button>
+                    <button id="button-checkout" class="btn btn-primary">ออกจากระบบ</button>
                 </div>
             </div>
         </div>
-    </form>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="container mt-5 mb-5">
+                <div class=" card">
+                    <div class="card-body">
+                        <h2 class="card-title">ออกรายงาน</h2>
+                        <form>
+                            <div class="form-group">
+                                <label for="">จาก</label>
+                                <input type="text"
+                                       id="id_pickerStart"
+                                       class="form-control start-date-picker"
+                                       name="start_date"
+                                       required>
+                            </div>
+                            <div class="form-group">
+                                <label for="">ถึง</label>
+                                <input type="text"
+                                       id="id_pickerEnd"
+                                       class="form-control end-date-picker"
+                                       name="end_date"
+                                       required>
+                            </div>
+                            <button id="submitReport"
+                                    type="submit"
+                                    class="btn btn-primary">ส่งออก
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
 {% endblock content %}
 
 {% block js %}
-    <script src="{% static "js/api.js" %}"></script>
+    {#    <script src="{% static "js/api.js" %}"></script>#}
+    <script src="{% static "js/webcam.js" %}"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
             integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
     </script>

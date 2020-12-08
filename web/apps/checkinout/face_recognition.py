@@ -61,6 +61,9 @@ def find_matches_image_between_user(basename, image, plate):
                     updated_user=user_profile.user
                 )
 
+                log.info(f'{user_profile}, {create_check_in_out}')
+                return user_profile, create_check_in_out
+
             elif basename == 'checkout' and user_profile.id == motorcycle.profile_id:
                 image_file = ContentFile(base64.b64decode(image), 'checkin.jpg')
                 create_check_in_out = CheckOut.objects.create(face_logout=image_file, plate=plate)
@@ -81,8 +84,14 @@ def find_matches_image_between_user(basename, image, plate):
                 park.updated_user = user_profile.user
                 park.save(update_fields=['status', 'checkout', 'updated_user'])
 
-            log.info(f'{user_profile}, {create_check_in_out}')
-            return user_profile, create_check_in_out
+                log.info(f'{user_profile}, {create_check_in_out}')
+                return user_profile, create_check_in_out
+
+            else:
+                log.info(
+                    'Face ' + user_profile.family_name + " " + user_profile.last_name + ' not matching as motorcycle')
+                return 'Face not matching as motorcycle', None
+
         else:
             log.info('Unknown')
             return 'Unknown', None
